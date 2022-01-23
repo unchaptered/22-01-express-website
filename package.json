@@ -1,0 +1,34 @@
+{
+  "name": "project-2022-01-express-website",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon ./src/start.js",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "coverage": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/unchaptered/22-01-express-website.git"
+  },
+  "author": "unchaptered",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/unchaptered/22-01-express-website/issues"
+  },
+  "homepage": "https://github.com/unchaptered/22-01-express-website#readme",
+  "dependencies": {
+    "pug": "^3.0.2",
+    "axios": "^0.25.0",
+    "dotenv": "^14.2.0",
+    "express": "^4.17.2",
+    "express-session": "^1.17.2",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15",
+    "jest": "^27.4.7"
+  }
+}
