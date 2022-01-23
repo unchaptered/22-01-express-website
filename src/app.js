@@ -5,18 +5,22 @@ import morgan from "morgan";
 import session from "express-session";
 import MongoStore from "connect-mongo";
 
-const app=express();
-const morganLoger=morgan("dev");
+import HOME_ROUTER from "./routers/homeRouter.js";
+import USERS_ROUTER from "./routers/userRouter.js";
+import CONTENTS_ROUTER from "./routers/contentRouter.js";
 
-app.set("view engine", "pug");
-app.set("views", process.cwd()+"/src/views"); 
+const APP=express();
+const MORGAN=morgan("dev");
 
-app.use(morganLoger);
+APP.set("view engine", "pug");
+APP.set("views", process.cwd()+"/src/views"); 
 
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+APP.use(MORGAN);
 
-app.use(
+APP.use(express.urlencoded({ extended: true }));
+APP.use(express.json());
+
+APP.use(
     session({
         secret: process.env.COOKIE_SECRET,
         resave: false,
@@ -26,6 +30,9 @@ app.use(
     })
 );
 
-app.use("/assets", express.static("assets"));
+APP.use("/", HOME_ROUTER);
+APP.use("/users", USERS_ROUTER);
+APP.use("/contents", CONTENTS_ROUTER);
+APP.use("/assets", express.static("assets"));
 
-export default app;
+export default APP;

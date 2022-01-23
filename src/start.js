@@ -1,6 +1,6 @@
 import "dotenv/config";
 import "./db.js";
 
-import app from "./app.js";
+import APP from "./app.js";
 
-app.listen(process.env.PORT,()=>console.log("✅ success"));
+APP.listen(process.env.PORT,()=>console.log("✅ success"));

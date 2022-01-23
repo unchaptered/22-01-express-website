@@ -1,5 +1,5 @@
 import express from "express";
 
-const contentRouter=express.Router();
+const CONTENTS_ROUTER=express.Router();
 
-export default contentRouter;
+export default CONTENTS_ROUTER;
