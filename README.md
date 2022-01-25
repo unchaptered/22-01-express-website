@@ -64,6 +64,10 @@ WEB! 은 보편적인 웹 서비스입니다.
 
 ## ❎ Failure
  
+<hr>
+
+## ✅ Stacks
+
 | 구분 | 모듈 | 기능 |
 | :--: | :--- | :--- |
 | 1 | express | 프레임워크 |
@@ -77,10 +81,8 @@ WEB! 은 보편적인 웹 서비스입니다.
 | 9 | mongoose | MongoDB ODM 모듈러 |
 | 10 | nodemon | 코드 추적 및 node 재시작 |
 | 11 | jest | 단위 테스트 |
- 
-<hr>
 
-## ✅ Stacks
+<hr>
 
 ## Output
  
