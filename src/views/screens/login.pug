@@ -5,8 +5,13 @@ block main
         div.form-sizer
             div.form-display
                 header 로그인 창
-                label(for="userId") 아이디
-                input(type="text" id="userId" name="userId")
+                label(for="userId" ) 아이디
+                if messages.data
+                    input(type="text" id="userId" name="userId" value=`${messages.data}` required minLength="7" maxLength="20")
+                else
+                    input(type="text" id="userId" name="userId" required minLength="7" maxLength="20")
                 label(for="password") 비밀번호
-                input(type="password" id="password" name="password")
+                input(type="password" id="password" name="password" required minLength="7" maxLength="20")
                 button(type="submit") 로그인
+                if messages.error
+                    span=messages.error
