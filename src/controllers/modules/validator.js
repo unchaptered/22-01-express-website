@@ -1,3 +1,5 @@
+const pwRegexPattern = new RegExp(/\W{1,}/);
+const idRegexPattern = new RegExp(/[ㄱ-ㅎㅏ-ㅣ가-힣]/g);
 /**입력한 비밀번호가 동일해야함
  * @param {*} password 비밀번호
  * @param {*} password2 비밀번호 확인
@@ -18,6 +20,19 @@ export function passwordLength(password) {
  * @returns true or false
  */
 export function passwordRegex(password) {
-    const regex = new RegExp(/\W{1,}/);
-    return regex.test(password);
+    return pwRegexPattern.test(password);
+}
+/**아이디는 6자리 초과 30자리 이하
+ * @param {*} id 
+ * @returns true or false
+ */
+export function idLength(id) {
+    const result=id.length>6 && id.length<=30;
+    return result;
+}
+/**아이디는 한글 미포함
+ * @param {*} id 
+ */
+export function idRegex(id) {
+    return !idRegexPattern.test(id);
 }

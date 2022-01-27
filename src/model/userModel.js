@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
-import "dotenv/config";
 
 const userSchema=new mongoose.Schema({
     nickname: { type:String, required:true },
@@ -10,7 +9,7 @@ const userSchema=new mongoose.Schema({
 
 userSchema.pre("save", async function() {
     if(this.isModified("userpw")) {
-        this.password=await bcrypt.hash(this.password, process.env.BCRYPT_HASH_COUND);
+        this.userpw=await bcrypt.hash(this.userpw, 5);
     }
 });
 
