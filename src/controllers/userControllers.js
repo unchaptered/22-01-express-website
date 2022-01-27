@@ -1,4 +1,5 @@
 import bcrypt from "bcrypt";
+import dayjs from "dayjs";
 import userModel from "../model/userModel.js";
 
 import { idLength, idRegex, passwordCompared, passwordLength, passwordRegex } from "./modules/validator.js";
@@ -36,10 +37,13 @@ export const postJoin=async(req, res)=>{
         return res.status(304).redirect("/users/join");
     }
 
+    const usercreated=dayjs().format('YYYY:MM:DD:HH:mm:ss');
+
     const userDB=await userModel.create({ 
         username,
         userid:userId,
-        userpw:password
+        userpw:password,
+        usercreated
     });
 
     req.flash("data", userId);
