@@ -1,5 +1,4 @@
-
-
+import { passwordCompared, passwordLength, passwordRegex } from "./modules/validator.js";
 
 export const getJoin=(req, res)=>{
     return res.render("screens/join.pug");
