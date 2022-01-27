@@ -1,6 +1,5 @@
 import axios from "axios";
-import APP from "../app";
-import { getLogin, passwordCompared, passwordLength, passwordRegex, postLogin } from "./userControllers";
+import { getLogin, passwordCompared, passwordLength, passwordRegex, postLogin } from "./validator.js";
 
 describe("Modules",()=>{
     const req={
