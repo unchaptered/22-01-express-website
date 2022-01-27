@@ -36,3 +36,6 @@
     font-size: var(--join-font-size-);
     grid-column: 3/-3;
 }
+.form-display > span {
+    grid-column: 1/-1;
+}
