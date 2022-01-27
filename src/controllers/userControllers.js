@@ -1,6 +1,5 @@
 import bcrypt from "bcrypt";
 import userModel from "../model/userModel.js";
-import { extractPassword } from "./modules/extractor.js";
 
 import { idLength, idRegex, passwordCompared, passwordLength, passwordRegex } from "./modules/validator.js";
 
