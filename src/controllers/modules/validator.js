@@ -5,7 +5,7 @@ const idRegexPattern = new RegExp(/[ㄱ-ㅎㅏ-ㅣ가-힣]/g);
  * @param {*} password2 비밀번호 확인
  * @returns true or false
  */
- export function passwordCompared(password,password2) {
+export function passwordCompared(password,password2) {
     return password===password2;
 }
 /**비밀번호는 8자리 초과 20자리 이하
