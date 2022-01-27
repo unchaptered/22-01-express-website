@@ -2,9 +2,10 @@ import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 
 const userSchema=new mongoose.Schema({
-    nickname: { type:String, required:true },
+    username: { type:String, required:true },
     userid: { type:String, required:true, unique:true },
     userpw: { type:String, required:true },
+    usercreated:  { type:Date, required:true, default:Date.now },
 })
 
 userSchema.pre("save", async function() {

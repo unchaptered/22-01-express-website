@@ -51,3 +51,8 @@
 .form-display > button:hover {
     font-weight: 600;
 }
+
+/* profile.pug */
+.form_craeted {
+    text-align: center;
+}

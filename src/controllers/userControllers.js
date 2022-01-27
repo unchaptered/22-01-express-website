@@ -7,7 +7,7 @@ export const getJoin=(req, res)=>{
     return res.render("screens/join.pug");
 }
 export const postJoin=async(req, res)=>{
-    const { nickname, userId, password, password2 }=req.body;
+    const { username, userId, password, password2 }=req.body;
     
     const userExists=await userModel.findOne({ userid:userId });
     if(userExists) {
@@ -37,7 +37,7 @@ export const postJoin=async(req, res)=>{
     }
 
     const userDB=await userModel.create({ 
-        nickname,
+        username,
         userid:userId,
         userpw:password
     });
@@ -94,24 +94,25 @@ export const getProfile=async(req, res)=>{
 
     const userDB=await userModel.findById({ _id:id });
 
-    const _id=userDB._id;
-    const userid=userDB.userid;
-    const nickname=userDB.nickname;
-
-    const userObj={ _id, nickname, userid };
-
+    const userObj={
+        _id:userDB._id,
+        userid:userDB.userid,
+        username:userDB.username,
+        usercreated:userDB.usercreated
+    };
+    
     return res.render("screens/profile.pug", { userDB:userObj });
 }
 export const postProfile=async(req,res)=>{
     const {
-        body: { nickname, userId },
+        body: { username, userId },
         params: { id },
         session: {
-            user: { nickname:sessionNickname, userid:sessionUserid }
+            user: { username:sessionUsername, userid:sessionUserid }
         }
     }=req;
 
-    if(nickname===sessionNickname) {
+    if(username===sessionUsername) {
         if(userId===sessionUserid) {
             req.flash("error", "닉네임, 아이디가 동일합니다.");
             return res.status(304).redirect(`/users/${id}`);
@@ -142,8 +143,9 @@ export const postProfile=async(req,res)=>{
 
     const userDB=await userModel.findById({ _id:id });
     userDB.userid=userId;
-    userDB.nickname=nickname;
+    userDB.username=username;
     userDB.save();
+    req.session.user=userDB;
 
     return res.status(200).redirect(`/users/${id}`);
 }
