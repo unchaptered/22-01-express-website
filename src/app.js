@@ -2,8 +2,11 @@ import "dotenv/config";
 
 import express from "express";
 import morgan from "morgan";
+import flash from "express-flash";
 import session from "express-session";
 import MongoStore from "connect-mongo";
+
+import { localMiddleWare } from "./middleware.js";
 
 import HOME_ROUTER from "./routers/homeRouter.js";
 import USERS_ROUTER from "./routers/userRouter.js";
@@ -29,6 +32,9 @@ APP.use(
         store: MongoStore.create({ mongoUrl: process.env.DB_URL }),
     })
 );
+APP.use(flash());
+
+APP.use(localMiddleWare);
 
 APP.use("/", HOME_ROUTER);
 APP.use("/users", USERS_ROUTER);
