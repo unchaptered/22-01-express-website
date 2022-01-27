@@ -39,3 +39,15 @@
 .form-display > span {
     grid-column: 1/-1;
 }
+.form-display > header {
+    text-align: center;
+}
+.form-display > button {
+    grid-column: span 3;
+    
+    font-weight: 300;
+    transition: all 0.15s linear;
+}
+.form-display > button:hover {
+    font-weight: 600;
+}
