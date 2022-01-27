@@ -27,12 +27,14 @@ export function passwordRegex(password) {
  * @returns true or false
  */
 export function idLength(id) {
-    const result=id.length>6 && id.length<=30;
+    const result=id.length>6 && id.length<=20;
     return result;
 }
-/**아이디는 한글 미포함
+/**아이디에 한글 포함시 false 리턴, 아닐 시 true 리턴
  * @param {*} id 
  */
 export function idRegex(id) {
-    return !idRegexPattern.test(id);
+    const result=!idRegexPattern.test(id);
+    console.log(result);
+    return result;
 }
