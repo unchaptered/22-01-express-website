@@ -8,9 +8,9 @@ nav#nav
                 a(href="/").nav_logo WEB!
             div.nav_column
                 if !loggedIn
-                    a(href="/login").nav_linkers 로그인
-                    a(href="/join").nav_linkers 회원가입
+                    a(href="/users/login").nav_linkers 로그인
+                    a(href="/users/join").nav_linkers 회원가입
                 else
-                    a(href="/logout").nav_linkers 로그아웃
-                    a(href=`/usre/${loggedInUser._id}`).nav_linkers
+                    a(href="/users/logout").nav_linkers 로그아웃
+                    a(href=`/users/${loggedInUser._id}`).nav_linkers
                         strong #{loggedInUser.userid}

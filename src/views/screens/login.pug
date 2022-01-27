@@ -1,10 +1,10 @@
 extends ../BASE.pug
 
 block main 
-    form(action="/login" method="POST")#form
+    form(action="/users/login" method="POST")#form
         div.form-sizer
             div.form-display
-                header 로그인 창
+                header 로그인
                 label(for="userId" ) 아이디
                 if messages.data
                     input(type="text" id="userId" name="userId" value=`${messages.data}` required minLength="7" maxLength="20")
