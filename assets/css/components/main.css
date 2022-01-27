@@ -1,0 +1,12 @@
+#main {
+    width: 100%;
+    padding-top: var(--nav-height-);
+}
+.nav-resizer {
+    width: var(--responsive-width-);
+}
+@media screen and (max-width: 1200px) {
+    .nav-resizer {
+        width: 100%;
+    }
+}

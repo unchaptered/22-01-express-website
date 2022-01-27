@@ -1,0 +1,12 @@
+extends ../BASE.pug
+
+block main 
+    form(action="/login" method="POST")#form
+        div.form-sizer
+            div.form-display
+                header 로그인 창
+                label(for="userId") 아이디
+                input(type="text" id="userId" name="userId")
+                label(for="password") 비밀번호
+                input(type="password" id="password" name="password")
+                button(type="submit") 로그인

@@ -1,0 +1,39 @@
+@import "../_root.css";
+
+#nav {
+    position: fixed;
+
+    width: 100%;
+    height: var(--nav-height-);
+}
+.nav-sizer {
+    width: var(--responsive-width-);
+    height: var(--nav-height-);
+    margin: 0 auto;
+
+    transition: all 0.2s linear;
+}
+.nav-display {
+    width: 100%;
+    height: var(--nav-height-);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.nav_column {
+    width: 300px;
+    gap: 10px;
+    display: flex;
+}
+.nav_column:nth-child(1) { justify-content: flex-start; }
+.nav_column:nth-child(2) { justify-content: center; }
+.nav_column:nth-child(3) { justify-content: flex-end; }
+.nav_logo { font-size: var(--nav-logo-size-); }
+.nav_linkers { font-size: var(--nav-linker-size-); }
+@media screen and (max-width: 1200px) {
+    .nav-sizer { width: 100%; padding: var(--nav-padding-vertical-) var(--nav-padding-horinzontal-1200-); }
+}
+@media screen and (max-width: 1000px) {
+    .nav-sizer { padding: var(--nav-padding-vertical-) var(--nav-padding-horinzontal-1000-); }
+}

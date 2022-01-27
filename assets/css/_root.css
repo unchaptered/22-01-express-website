@@ -1,0 +1,13 @@
+:root {
+    --nav-height-: 50px;
+    --nav-logo-size-: 18px;
+    --nav-linker-size-: 16px;
+    --nav-padding-vertical-: 0;
+    --nav-padding-horinzontal-1200-: 40px;
+    --nav-padding-horinzontal-1000-: 20px;
+
+    --responsive-width-: 1000px;
+
+    --join-font-size-: 16px;
+    --join-header-size-: 22px;
+}
