@@ -9,70 +9,81 @@ import {
 
 describe("Validators", ()=>{
     describe("Id Validators", ()=>{
-        let userId="tmp";
         describe("Id Length 6 < * <=30", ()=>{
             test(`id.length = 3`, ()=>{
-                userId="tmp"
+                const userId="tmp"
                 const result=idLength(userId);
                 expect(result).toBeFalsy();
             });
-            test(`id.length = 31`, ()=>{
-                userId="abcdeabcdeabcdeabcdeabcdeabcdea";
+            test(`id.length = 21`, ()=>{
+                const userId="abcdeabcdeabcdeabcdea";
                 const result=idLength(userId);
                 expect(result).toBeFalsy();
             });
             test(`id.length = 10`,()=>{
-                userId="bmgktlqejr";
+                const userId="bmgktlqejr";
                 const result=idLength(userId);
                 expect(result).toBeTruthy();
             });
         });
         describe("Id Regex /[ㄱ-ㅎㅏ-ㅣ가-힣]/g", ()=>{
-            test(`id = 안abcd`, ()=>{
-                userId="안abcd";
-                const result=idLength(userId);
-                expect(result).toBeFalsy();
-            });
-            test(`id = ab안cd`, ()=>{
-                userId="ab안cd";
-                const result=idLength(userId);
-                expect(result).toBeFalsy();
-            });
-            test(`id = abcd안`, ()=>{
-                userId="abcd안";
-                const result=idLength(userId);
-                expect(result).toBeFalsy();
-            });
-            test(`id = ㅇabcd`, ()=>{
-                userId="ㅇabcd";
-                const result=idLength(userId);
-                expect(result).toBeFalsy();
-            });
-            test(`id = abㅇcd`, ()=>{
-                userId="abㅇcd";
-                const result=idLength(userId);
-                expect(result).toBeFalsy();
-            });
-            test(`id = abcdㅇ`, ()=>{
-                userId="abcdㅇ";
-                const result=idLength(userId);
-                expect(result).toBeFalsy();
-            });
-            test(`id = ㅏabcd`, ()=>{
-                userId="ㅏabcd";
-                const result=idLength(userId);
-                expect(result).toBeFalsy();
-            });
-            test(`id = abㅏcd`, ()=>{
-                userId="abㅏcd";
-                const result=idLength(userId);
-                expect(result).toBeFalsy();
-            });
-            test(`id = abcdㅏ`, ()=>{
-                userId="abcdㅏ";
-                const result=idLength(userId);
-                expect(result).toBeFalsy();
-            });
+            describe("한글 포함 테스트", ()=>{
+                test("id = 안abcd", ()=>{
+                    const userId="aaaa";
+                    const result=idRegex(userId);
+                    expect(result).toBe(false);
+                });
+                test("id = a안bcd", ()=>{
+                    const userId="a안bcd";
+                    const result=idRegex(userId);
+                    expect(result).toBe(false);
+                });
+                test("id = ab안cd", ()=>{
+                    const userId="ab안cd";
+                    const result=idRegex(userId);
+                    expect(result).toBe(false);
+                });
+                test("id = abc안d", ()=>{
+                    const userId="abc안d";
+                    const result=idRegex(userId);
+                    expect(result).toBe(false);
+                });
+                test("id = abcd안", ()=>{
+                    const userId="abcd안";
+                    const result=idRegex(userId);
+                    expect(result).toBe(false);
+                });
+            })
+        //     test("id = ㅇabcd", ()=>{
+        //         const userId="안abcd";
+        //         const result=idRegex(userId);
+        //         expect(result).toBe(false);
+        //     });
+        //     test("id = abㅇcd", ()=>{
+        //         const userId="abㅇcd";
+        //         const result=idRegex(userId);
+        //         expect(result).toBe(false);
+        //     });
+        //     test("id = abcdㅇ", ()=>{
+        //         const userId="abcdㅇ";
+        //         const result=idRegex(userId);
+        //         expect(result).toBe(false);
+        //     });
+        //     test("id = ㅏabcd", ()=>{
+        //         const userId="ㅏabcd";
+        //         const result=idRegex(userId);
+        //         expect(result).toBe(false);
+        //     });
+        //     test("id = abㅏcd", ()=>{
+        //         const userId="abㅏcd";
+        //         const result=idRegex(userId);
+        //         expect(result).toBe(false);
+        //     });
+        //     test("id = abcdㅏ", ()=>{
+        //         const userId="abcdㅏ";
+        //         const result=idRegex(userId);
+        //         expect(result).toBe(false);
+        //     });
         });
     });
 
