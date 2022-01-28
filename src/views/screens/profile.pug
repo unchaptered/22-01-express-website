@@ -11,10 +11,12 @@ block main
                 input(type="text" id="userId" name="userId" required minLength="7" maxLength="20" value=`${userDB.userid}` disabled)
                 span.form_craeted #{userDB.usercreated}
 
-                if loggedInUser._id === String(userDB._id)
-                    //- profile.js 를 위한 이름
-                    button(type="button")#form_modify 수정하기
-                    button(style="display:none;")#form_submit 제출하기
+                if loggedIn
+                    if loggedInUser._id === String(userDB._id)
+                        //- profile.js 를 위한 이름
+                        button(type="button")#form_modify 수정하기
+                        button(style="display:none;")#form_submit 제출하기
+                        a(href=`/users/${loggedInUser._id}/remove`) 탈퇴하기
                 
                 span #{messages.error}
     script(src="/assets/js/profile.js") 

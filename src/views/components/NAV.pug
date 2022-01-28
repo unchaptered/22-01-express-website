@@ -2,8 +2,9 @@ nav#nav
     div.nav-sizer
         div.nav-display
             div.nav_column
-                a(href="/content/post").nav_linkers 글쓰기
-                a(href="/search").nav_linkers 검색
+                if loggedIn
+                    a(href="/content/post").nav_linkers 글쓰기
+                a(href="/content/").nav_linkers 글리스트
             div.nav_column
                 a(href="/").nav_logo WEB!
             div.nav_column
@@ -14,3 +15,4 @@ nav#nav
                     a(href="/users/logout").nav_linkers 로그아웃
                     a(href=`/users/${loggedInUser._id}`).nav_linkers
                         strong #{loggedInUser.userid}
+                a(href="/users").nav_linkers 유저리스트
