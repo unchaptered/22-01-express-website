@@ -1,0 +1,40 @@
+@import "../_root.css";
+
+#userList {
+    width: 100%;
+    height: calc(100vh - var(--nav-height-));
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.userList-sizer {
+    margin: 0 auto;
+    width: var(--responsive-width-);
+
+    border: 1px solid black;
+    padding: 30px;
+}
+@media screen and (max-width: 1040px) {
+    .userList-sizer {
+        margin: 0 auto;
+        width: calc(100vw - 60px);
+    }
+}
+.userList-display {
+    gap: 50px 15px;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+}
+.userList_content {
+    display: flex;
+    flex-direction: column;
+}
+.userList_column {
+    gap: 30px;
+    display: flex;
+}
+/* label 위치 */
+.userList_column > span:nth-child(1) {
+    width: 60px;
+}

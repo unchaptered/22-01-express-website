@@ -1,0 +1,18 @@
+extends ../BASE.pug
+
+block main 
+    section#userList
+        div.userList-sizer
+            div.userList-display
+                each userDB in userDBLists
+                    div.userList_content
+                        a(href=`/users/${userDB._id}`) 방문하기
+                        div.userList_column
+                            span 닉네임
+                            span #{userDB.username}
+                        div.userList_column
+                            span 아이디
+                            span #{userDB.userid}
+                        div.userList_column
+                            span 가입일자
+                            span #{userDB.createdDate}
