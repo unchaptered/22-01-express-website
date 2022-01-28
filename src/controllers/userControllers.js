@@ -37,13 +37,13 @@ export const postJoin=async(req, res)=>{
         return res.status(304).redirect("/users/join");
     }
 
-    const usercreated=dayjs().format('YYYY:MM:DD:HH:mm:ss');
+    const createdDate=dayjs().format('YYYY:MM:DD:HH:mm:ss');
 
     const userDB=await userModel.create({ 
         username,
         userid:userId,
         userpw:password,
-        usercreated
+        createdDate
     });
 
     req.flash("data", userId);
@@ -102,7 +102,7 @@ export const getProfile=async(req, res)=>{
         _id:userDB._id,
         userid:userDB.userid,
         username:userDB.username,
-        usercreated:userDB.usercreated
+        createdDate:userDB.createdDate
     };
     
     return res.render("screens/profile.pug", { userDB:userObj });
@@ -152,6 +152,20 @@ export const postProfile=async(req,res)=>{
     req.session.user=userDB;
 
     return res.status(200).redirect(`/users/${id}`);
+}
+export const getUserLists=async(req, res)=>{
+    const userDBLists=await userModel.find().limit(10);
+    console.log(userDBLists);
+
+    return res.render("screens/userList.pug", {userDBLists});
+}
+export const getUserRemove=async(req, res)=>{
+    const { _id }=req.session.user;
+
+    const userDB=await userModel.findByIdAndRemove({_id});
+    req.session.destroy();
+
+    return res.status(200).redirect("/");
 }
 export const getSearch=(req, res)=>{
     return res.render("screens/search.pug");
