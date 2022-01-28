@@ -44,7 +44,9 @@
 }
 .form-display > button {
     grid-column: span 3;
-    
+
+    color: #000000;
+    font-size: 13px;
     font-weight: 300;
     transition: all 0.15s linear;
 }
@@ -55,4 +57,16 @@
 /* profile.pug */
 .form_craeted {
     text-align: center;
+}
+#form a {
+    text-align: center;
+    grid-column: span 6;
+    
+    color: #000000;
+    font-size: 13px;
+    font-weight: 300;
+    transition: all 0.15s linear;
+}
+#form a:hover {
+    font-weight: 600;
 }

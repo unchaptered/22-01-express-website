@@ -5,6 +5,7 @@
 @import "./components/main.css";
 
 @import "./screens/user-form.css";
+@import "./screens/user-list.css";
 
 * {
     box-sizing: border-box;
