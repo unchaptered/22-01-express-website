@@ -10,7 +10,7 @@ import { localMiddleWare } from "./middleware.js";
 
 import HOME_ROUTER from "./routers/homeRouter.js";
 import USERS_ROUTER from "./routers/userRouter.js";
-import CONTENTS_ROUTER from "./routers/contentRouter.js";
+import POST_ROUTER from "./routers/postRouter.js";
 
 const APP=express();
 const MORGAN=morgan("dev");
@@ -38,7 +38,7 @@ APP.use(localMiddleWare);
 
 APP.use("/", HOME_ROUTER);
 APP.use("/users", USERS_ROUTER);
-APP.use("/contents", CONTENTS_ROUTER);
+APP.use("/posts", POST_ROUTER);
 APP.use("/assets", express.static("assets"));
 
 export default APP;
