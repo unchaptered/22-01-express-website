@@ -7,7 +7,8 @@
   "scripts": {
     "start": "nodemon ./src/start.js",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
-    "coverage": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage"
+    "test:coverage": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage",
+    "test:clear": "node --experimental-vm-modules node_modules/jest/bin/jest.js --clearCache"
   },
   "repository": {
     "type": "git",

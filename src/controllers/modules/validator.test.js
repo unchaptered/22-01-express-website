@@ -29,24 +29,24 @@ describe("Validators", ()=>{
         describe("Id Regex /[ㄱ-ㅎㅏ-ㅣ가-힣]/g", ()=>{
             describe("한글 포함 테스트", ()=>{
                 test("id = 안abcd", ()=>{
-                    const userId="aaaa";
+                    const userId="안abcd";
                     const result=idRegex(userId);
-                    expect(result).toBe(false);
+                    expect(result).toBeFalsy();
                 });
                 test("id = a안bcd", ()=>{
                     const userId="a안bcd";
                     const result=idRegex(userId);
-                    expect(result).toBe(false);
+                    expect(result).toBeFalsy();
                 });
                 test("id = ab안cd", ()=>{
                     const userId="ab안cd";
                     const result=idRegex(userId);
-                    expect(result).toBe(false);
+                    expect(result).toBeFalsy();
                 });
                 test("id = abc안d", ()=>{
                     const userId="abc안d";
                     const result=idRegex(userId);
-                    expect(result).toBe(false);
+                    expect(result).toBeFalsy();
                 });
                 test("id = abcd안", ()=>{
                     const userId="abcd안";
@@ -54,36 +54,60 @@ describe("Validators", ()=>{
                     expect(result).toBe(false);
                 });
             })
-        //     test("id = ㅇabcd", ()=>{
-        //         const userId="안abcd";
-        //         const result=idRegex(userId);
-        //         expect(result).toBe(false);
-        //     });
-        //     test("id = abㅇcd", ()=>{
-        //         const userId="abㅇcd";
-        //         const result=idRegex(userId);
-        //         expect(result).toBe(false);
-        //     });
-        //     test("id = abcdㅇ", ()=>{
-        //         const userId="abcdㅇ";
-        //         const result=idRegex(userId);
-        //         expect(result).toBe(false);
-        //     });
-        //     test("id = ㅏabcd", ()=>{
-        //         const userId="ㅏabcd";
-        //         const result=idRegex(userId);
-        //         expect(result).toBe(false);
-        //     });
-        //     test("id = abㅏcd", ()=>{
-        //         const userId="abㅏcd";
-        //         const result=idRegex(userId);
-        //         expect(result).toBe(false);
-        //     });
-        //     test("id = abcdㅏ", ()=>{
-        //         const userId="abcdㅏ";
-        //         const result=idRegex(userId);
-        //         expect(result).toBe(false);
-        //     });
+            describe("한글 자음 테스트", ()=>{
+                test("id = ㅇabcd", ()=>{
+                    const userId="ㅇabcd";
+                    const result=idRegex(userId);
+                    expect(result).toBeFalsy();
+                });
+                test("id = aㅇbcd", ()=>{
+                    const userId="aㅇbcd";
+                    const result=idRegex(userId);
+                    expect(result).toBeFalsy();
+                });
+                test("id = abㅇcd", ()=>{
+                    const userId="abㅇcd";
+                    const result=idRegex(userId);
+                    expect(result).toBeFalsy();
+                });
+                test("id = abcㅇd", ()=>{
+                    const userId="abcㅇd";
+                    const result=idRegex(userId);
+                    expect(result).toBeFalsy();
+                });
+                test("id = abcdㅇ", ()=>{
+                    const userId="abcdㅇ";
+                    const result=idRegex(userId);
+                    expect(result).toBeFalsy();
+                });
+            });
+            describe("한글 모음 테스트", ()=>{
+                test("id = ㅏabcd", ()=>{
+                    const userId="ㅏabcd";
+                    const result=idRegex(userId);
+                    expect(result).toBe(false);
+                });
+                test("id = aㅏbcd", ()=>{
+                    const userId="aㅏbcd";
+                    const result=idRegex(userId);
+                    expect(result).toBe(false);
+                });
+                test("id = abㅏcd", ()=>{
+                    const userId="abㅏcd";
+                    const result=idRegex(userId);
+                    expect(result).toBe(false);
+                });
+                test("id = abcㅏd", ()=>{
+                    const userId="abcㅏd";
+                    const result=idRegex(userId);
+                    expect(result).toBe(false);
+                });
+                test("id = abcdㅏ", ()=>{
+                    const userId="abcdㅏ";
+                    const result=idRegex(userId);
+                    expect(result).toBe(false);
+                });
+            })
         });
     });
 
