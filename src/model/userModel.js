@@ -5,8 +5,8 @@ const userSchema=new mongoose.Schema({
     username: { type:String, required:true },
     userid: { type:String, required:true, unique:true },
     userpw: { type:String, required:true },
-    usercreated:  { type:Object, required:true },
-})
+    createdDate:  { type:Object, required:true }
+});
 
 userSchema.pre("save", async function() {
     if(this.isModified("userpw")) {
