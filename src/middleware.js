@@ -33,3 +33,16 @@ export const preventLogoutUser=(req,res,next)=>{
         return next();
     }
 }
+/**Session, 소유주가 아닌 유저를 차단합니다. (테스트 완료 X)
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next >> controllers
+ */
+export const preventNonOwner=(req,res,next)=>{
+    if (req.session.user._id !== req.params.id) {
+        req.flash("error", "해당 계정의 소유주가 아닙니다.\n부정한 경로로 접속하지 마십시오.");
+        return res.status(304).redirect(`/users/${req.params.id}`);
+    } else {
+        return next();
+    }
+}
