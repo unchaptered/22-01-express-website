@@ -1,5 +1,5 @@
 import jest from "jest-mock";
-import { localMiddleWare, preventLoginUser, preventLogoutUser } from "./middleware"
+import { localMiddleWare, preventLoginUser, preventLogoutUser, preventNonOwner } from "./middleware"
 
 describe("Middlewares", ()=>{
     describe("localMiddleware", ()=>{
@@ -124,4 +124,60 @@ describe("Middlewares", ()=>{
             expect(res.URL).toBe("/");
         });
     });
+    describe("preventNonOwner", ()=>{
+        const req={
+            session: {
+                loggedIn: true,
+                user: {
+                    _id: "samplehashedid",
+                    nickname: "testerNickname",
+                    userid: "testerUserid",
+                    userpw: "testerPassword12@"
+                }
+            },
+            params: {
+                id: "samplehashedid"
+            },
+            flashes: {},
+            flash: function flash(key, value) {
+                req.flashes.error=value;
+            }
+        };
+        const res={
+            locals: {
+                loggedIn: false,
+                loggedInUser: null
+            },
+            statusCode: null,
+            URL: null,
+            status: function status(statusCode) {
+                res.statusCode=statusCode;
+                return res;
+            },
+            redirect: function redirect(URL) {
+                res.URL=URL;
+                return res;
+            }
+        };
+        const next=jest.fn();
+        test("Onwer",()=>{
+            res.statusCode=null;
+            res.URL=null;
+
+            const empty={};
+            preventNonOwner(req,res,next);
+            expect(res.statusCode).toBeNull();
+            expect(res.URL).toBeNull();
+            expect(req.flashes).toEqual(empty);
+        });
+        test("Non-Onwer", ()=>{
+            req.session.user._id="samplehashedid2";
+            res.statusCode=null;
+            res.URL=null;
+            preventNonOwner(req,res,next);
+            expect(res.statusCode).toBe(304);
+            expect(res.URL).toBe(`/users/${req.params.id}`);
+            expect(req.flashes.error).toBe("해당 계정의 소유주가 아닙니다.\n부정한 경로로 접속하지 마십시오.");
+        });
+    })
 });
