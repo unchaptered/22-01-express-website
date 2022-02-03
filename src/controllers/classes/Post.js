@@ -2,11 +2,18 @@ import dayjs from "dayjs";
 /** Post 는 postModel 에 대응되는 클래스입니다.
  */
 class Post {
+    _id;
     posttitle;
     posttext;
     createdDate;
     ownerId;
-    /**Post Contstructor 내부에서 dayjs().format('YYYY:MM:DD:HH:mm:ss');
+    /**Post Class
+     * 
+     * 유효성 검사 지문을 통과하지 못하면, throw Error
+     * 
+     * postTitleLength(title) 1<*<=50
+     * 
+     * postTextLength(text) 1<*<=1000
      * @param {*} title 게시글 제목
      * @param {*} text 게시글 내용
      */
@@ -16,10 +23,9 @@ class Post {
 
         this.posttitle=title;
         this.posttext=text;
-        this.createdDate=dayjs().format('YYYY:MM:DD:HH:mm:ss');
     }
 
-    /**게시글 제목은 1자리 초과 50자리 이하
+    /**게시글 제목 유효성 검사 1<*<=50
      * @param {*} title 
      * @returns true or false
      */
@@ -27,7 +33,7 @@ class Post {
         const result=title.length>1 && title.length<=50;
         return result;
     }
-    /**게시글 내용은 1자리 초과 5000자리 이하
+    /**게시글 내용 유효성 검사 1<*<=1000
      * @param {*} text 
      * @returns treu or false
      */
@@ -36,6 +42,9 @@ class Post {
         return result;
     }
 
+    set setPostId(id) {
+        this._id=id;
+    }
     set setPosttitle(title) {
         this.posttitle=title;
     }
@@ -45,7 +54,13 @@ class Post {
     set setOwnerId(_id) {
         this.ownerId=_id;
     }
+    set setCreatedDate(date) {
+        this.createdDate=date;
+    }
 
+    get getPostId() {
+        return this._id;
+    }
     get getPosttitle() {
         return this.posttitle;
     }
@@ -57,6 +72,9 @@ class Post {
     }
     get getOwnerId() {
         return this.ownerId;
+    }
+    get getCreatedDate() {
+        return this.createdDate;
     }
 }
 
