@@ -1,74 +1,56 @@
+import User from "./classes/User.js";
+import CustomDate from "./classes/CustomDate.js.js";
+
 import bcrypt from "bcrypt";
-import dayjs from "dayjs";
 import userModel from "../model/userModel.js";
 
-import { idLength, idRegex, passwordCompared, passwordLength, passwordRegex } from "./modules/validator.js";
-
 export const getJoin=(req, res)=>{
-    return res.render("screens/join.pug");
+    return res.render("screens/user/join.pug");
 }
 export const postJoin=async(req, res)=>{
     const { username, userId, password, password2 }=req.body;
-    
+    console.log(req.body);
+
     const userExists=await userModel.findOne({ userid:userId });
     if(userExists) {
         req.flash("error", "이미 존재하는 이이디 입니다.");
         return res.status(304).redirect("/users/join");
     }
-    
-    if(!idLength(userId)){
-        req.flash("error", "7자 초과 20자 미만의 아이디를 입력해주세요.");
-        return res.status(304).redirect("/users/join");
-    }
-    if(!idRegex(userId)) {
-        req.flash("error", "아이디에 한글이 포함되면 안됩니다.");
-        return res.status(304).redirect("/users/join");
-    }
-    if(!passwordCompared(password,password2)) {
-        req.flash("error", "두 비밀번호가 서로 같지 않습니다.");
-        return res.status(304).redirect("/users/join");
-    }
-    if(!passwordLength(password)) {
-        req.flash("error", "7자 초과 20자 미만의 비밀번호를 입력해주세요.");
-        return res.status(304).redirect("/users/join");
-    }
-    if(!passwordRegex(password)) {
-        req.flash("error", "비밀번호에 특수문자를 포함하여야 합니다.");
+
+    let user;
+    try {
+        user=new User(username,userId,password,password);
+        user.setCreatedDate=CustomDate.getCreatedDate();
+    } catch(err) {
+        req.flash("error", err);
         return res.status(304).redirect("/users/join");
     }
 
-    const createdDate=dayjs().format('YYYY:MM:DD:HH:mm:ss');
-
-    const userDB=await userModel.create({ 
-        username,
-        userid:userId,
-        userpw:password,
-        createdDate
-    });
+    try {
+        const userDB=await userModel.create({ 
+            username:user.getUsername,
+            userid:user.getUserid,
+            userpw:user.getUserpw,
+            createdDate:user.getCreatedDate
+        });
+    } catch(err) {
+        req.flash("error", err);
+        return res.status(304).redirect("/users/join");
+    }
 
     req.flash("data", userId);
     return res.redirect("/users/login");
 }
 export const getLogin=(req, res)=>{
-    return res.render("screens/login.pug");
+    return res.render("screens/user/login.pug");
 }
 export const postLogin=async(req, res)=>{
     const { userId, password }=req.body;
 
-    if(!idLength(userId)){
-        req.flash("error", "7자 초과 20자 미만의 아이디를 입력해주세요.");
-        return res.status(304).redirect("/users/login");
-    }
-    if(!idRegex(userId)) {
-        req.flash("error", "아이디에 한글이 포함되면 안됩니다.");
-        return res.status(304).redirect("/users/login");
-    }
-    if(!passwordLength(password)) {
-        req.flash("error", "7자 초과 20자 미만의 비밀번호를 입력해주세요.");
-        return res.status(304).redirect("/users/login");
-    }
-    if(!passwordRegex(password)) {
-        req.flash("error", "비밀번호에 특수문자를 포함하여야 합니다.");
+    try {
+        const user=new User("",userId,password,password);
+    } catch(err) {
+        req.flash("error", err);
         return res.status(304).redirect("/users/login");
     }
 
@@ -105,7 +87,7 @@ export const getProfile=async(req, res)=>{
         createdDate:userDB.createdDate
     };
     
-    return res.render("screens/profile.pug", { userDB:userObj });
+    return res.render("screens/user/profile.pug", { userDB:userObj });
 }
 export const postProfile=async(req,res)=>{
     const {
@@ -130,11 +112,11 @@ export const postProfile=async(req,res)=>{
         }
     }
 
-    if(!idLength(userId)) {
+    if(!User.idLength(userId)) {
         req.flash("error", "7자 초과 20자 미만의 아이디를 입력해주세요.");
         return res.status(304).redirect(`/users/${id}`);
     }
-    if(!idRegex(userId)) {
+    if(!User.idRegex(userId)) {
         req.flash("error", "아이디에 한글이 포함되면 안됩니다.");
         return res.status(304).redirect(`/users/${id}`);
     }
@@ -157,7 +139,7 @@ export const getUserLists=async(req, res)=>{
     const userDBLists=await userModel.find().limit(10);
     console.log(userDBLists);
 
-    return res.render("screens/userList.pug", {userDBLists});
+    return res.render("screens/user/userList.pug", {userDBLists});
 }
 export const getUserRemove=async(req, res)=>{
     const { _id }=req.session.user;
@@ -168,8 +150,8 @@ export const getUserRemove=async(req, res)=>{
     return res.status(200).redirect("/");
 }
 export const getSearch=(req, res)=>{
-    return res.render("screens/search.pug");
+    return res.render("screens/user/search.pug");
 }
 export const postSearch=(req, res)=>{
-    return res.render("screens/search.pug");
+    return res.render("screens/user/search.pug");
 }
