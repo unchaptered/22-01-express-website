@@ -1,23 +1,22 @@
-import Post from "./classes/Post.js.js"
+import Post from "./classes/Post.js"
 import CustomDate from "./classes/CustomDate.js";
 
 import postModel from "../model/postModel.js";
-import dayjs from "dayjs";
 
 export const getPostLists=async(req, res)=>{
     try {
         const postDBLists=(await postModel.find().limit(10))
-        .map(({
-            _id, posttitle, posttext, createdDate, ownerId
-        })=>{
-            
-            posttext=(posttext.length>99) ? posttext.substring(0,99)+"..." : posttext;
-            const post=new Post(posttitle, posttext);
-            post.setPostId=_id;
-            post.setCreatedDate=createdDate;
-            post.setOwnerId=ownerId;
-            return post;
-        });
+            .map(({
+                _id, posttitle, posttext, createdDate, ownerId
+            })=>{
+                
+                posttext=(posttext.length>99) ? posttext.substring(0,99)+"..." : posttext;
+                const post=new Post(posttitle, posttext);
+                post.setPostId=_id;
+                post.setCreatedDate=createdDate;
+                post.setOwnerId=ownerId;
+                return post;
+            });
 
         return res.status(200).render("screens/post/postlist.pug", {postDBLists});
     } catch(error) {

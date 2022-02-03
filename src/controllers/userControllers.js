@@ -1,5 +1,5 @@
 import User from "./classes/User.js";
-import CustomDate from "./classes/CustomDate.js.js";
+import CustomDate from "./classes/CustomDate.js";
 
 import bcrypt from "bcrypt";
 import userModel from "../model/userModel.js";
