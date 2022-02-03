@@ -1,4 +1,6 @@
 import "dotenv/config";
+import { logger } from "../config/winston.js";
+
 import mongoose from "mongoose";
 
 mongoose.connect(process.env.DB_URL, {
@@ -8,5 +10,9 @@ mongoose.connect(process.env.DB_URL, {
 
 const DB=mongoose.connection;
 
-DB.on("error", ()=>console.log("❎ db failure")); // "on" can implement several times
-DB.once("open", ()=>console.log("✅ db success")); // "once" can't implemtent once times
+DB.on("error", ()=>{
+    logger.error("❎ Database off");
+}); // "on" can implement several times
+DB.once("open", ()=>{
+    logger.info("✅ Database on");
+}); // "once" can't implemtent once times
