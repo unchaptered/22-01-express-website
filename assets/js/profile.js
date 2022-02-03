@@ -7,5 +7,3 @@ modifyBtn.addEventListener("click", (event)=>{
     submitBtn.style.display="initial";
     inputLists.forEach(element=>element.disabled=false);
 });
-submitBtn.addEventListener("click", ()=>{
-});
