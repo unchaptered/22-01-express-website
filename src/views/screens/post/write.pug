@@ -1,0 +1,23 @@
+extends ../../BASE.pug
+
+block main 
+    form(action="/posts/write" method="POST")#form
+        div.form-sizer
+            div.form-display
+                div.post_div
+                    label(for="username") 닉네임
+                    input(type="text" id="username" name="username" value=`${loggedInUser.username}` disabled)
+                    label(for="userId") 아이디
+                    input(type="text" id="userId" name="userId" value=`${loggedInUser.userid}` disabled)
+                div.post_div
+                    label(for="posttitle") 게시글 제목
+                    input(type="text" id="posttitle" name="posttitle" required minLength=1)
+                div.post_div
+                    label(for="posttext") 게시글 내용
+                    textarea(id="posttext" name="posttext", cols="30", rows="10" required minLength=1 maxlength=1000)
+                div.post_text_length
+                    span 0
+                    span /
+                    span 1,000 자
+                button(type="submit") 게시글 작성
+    script(src="/assets/js/postWrite.js")

@@ -1,0 +1,14 @@
+extends ../../BASE.pug
+
+block main
+    section#postList
+        div.postList-sizer
+            div.postList-display
+                each postDB in postDBLists
+                    a(href=`/posts/${postDB._id}`).postList_content
+                        span 글제목
+                        span #{postDB.posttitle}
+                        span 글내용
+                        span #{postDB.posttext}
+                        span 작성일자
+                        span #{postDB.createdDate}
