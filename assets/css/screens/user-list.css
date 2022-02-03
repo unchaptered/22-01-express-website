@@ -1,5 +1,6 @@
 @import "../_root.css";
 
+#postList,
 #userList {
     width: 100%;
     height: calc(100vh - var(--nav-height-));
@@ -8,6 +9,7 @@
     align-items: center;
     justify-content: center;
 }
+.postList-sizer,
 .userList-sizer {
     margin: 0 auto;
     width: var(--responsive-width-);
@@ -15,17 +17,31 @@
     border: 1px solid black;
     padding: 30px;
 }
-@media screen and (max-width: 1040px) {
-    .userList-sizer {
-        margin: 0 auto;
-        width: calc(100vw - 60px);
-    }
-}
+.postList-display,
 .userList-display {
     gap: 50px 15px;
     display: grid;
     grid-template-columns: repeat(3,1fr);
 }
+@media screen and (max-width: 1040px) {
+    .postList-sizer,
+    .userList-sizer {
+        margin: 0 auto;
+        width: calc(100vw - 60px);
+    }
+    .postList-display,
+    .userList-display {
+        grid-template-columns: repeat(2,1fr);
+    }
+}
+@media screen and (max-width: 800px) {
+    .postList-display,
+    .userList-display {
+        grid-template-columns: repeat(1,1fr);
+    }
+}
+
+/* userList */
 .userList_content {
     display: flex;
     flex-direction: column;
@@ -37,4 +53,25 @@
 /* label 위치 */
 .userList_column > span:nth-child(1) {
     width: 60px;
+}
+
+/* postList */
+.postList_content {
+    padding: 10px;
+    height: fit-content;
+
+    gap: 10px 0;
+    display: grid;
+    grid-template-columns: repeat(6,1fr);
+
+    /* border: 1px solid black; */
+}
+.postList_content span {
+    word-break: break-all;
+}
+.postList_content span:nth-child(even) {
+    grid-column: span 4;
+}
+.postList_content span:nth-child(odd) {
+    grid-column: span 2;
 }

@@ -15,6 +15,8 @@
     padding: 30px;
 }
 .form-display {
+    position: relative;
+
     gap: 20px;
     display: grid;
     grid-template-columns: repeat(6,1fr);
@@ -53,8 +55,12 @@
 .form-display > button:hover {
     font-weight: 600;
 }
+.form-display .post_div > textarea {
+    grid-column: span 6;
+    resize:none;
+}
 
-/* profile.pug */
+/* /users/profile.pug */
 .form_craeted {
     text-align: center;
 }
@@ -69,4 +75,22 @@
 }
 #form a:hover {
     font-weight: 600;
+}
+
+/* /posts/write.pug */
+.form-display > .post_text_length {
+    position: absolute;
+    right: 10px;
+    bottom: 45px;
+
+    color: grey;
+    gap: 5px;
+    display: flex;
+}
+.form-display > .post_div {
+    grid-column: span 6;
+    
+    gap: 5px;
+    display: flex;
+    flex-direction: column;
 }
