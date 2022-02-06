@@ -1,0 +1,65 @@
+extends BASE.pug
+
+block main
+    section#chat
+        div.chat-sizer
+            div.chat-sizer_area
+                header 채팅방
+                div.chat-displayer
+                    span.chat_notice 안녕하세요. 웹소켓 채팅방입니다.
+                    div.chat_user
+                        div
+                            span 유저이름 
+                            span 14시 11분
+                            span 2022-02-04
+                        span 헬로우
+                    div.chat_user
+                        div
+                            span 곤잘레스 쉬림프 파스타 
+                            span 14시 11분
+                            span 2022-02-04
+                        span 반가워요반가워요반가워요반가워요반가워요반가워요반가워요반가워요반가워요반가워요반가워요반가워요반가워요반가워요반가워요반가워요반가워요ㄴ
+                    div.chat_user
+                        div
+                            span 유저이름 
+                            span 14시 11분
+                            span 2022-02-04
+                        span 헬로우
+                    div.chat_user
+                        div
+                            span 곤잘레스 쉬림프 파스타 
+                            span 14시 11분
+                            span 2022-02-04
+                        span 반가워요반가워요반가워요반가워요반가워요반가워요반가워요반가워요반가워요반가워요반가워요반가워요반가워요반가워요반가워요반가워요반가워요ㄴ
+                    div.chat_user
+                        div
+                            span 유저이름 
+                            span 14시 11분
+                            span 2022-02-04
+                        span 헬로우
+                    div.chat_user
+                        div
+                            span 곤잘레스 쉬림프 파스타 
+                            span 14시 11분
+                            span 2022-02-04
+                        span 반가워요반가워요반가워요반가워요반가워요반가워요반가워요반가워요반가워요반가워요반가워요반가워요반가워요반가워요반가워요반가워요반가워요ㄴ
+                    div.chat_user
+                        div
+                            span 유저이름 
+                            span 14시 11분
+                            span 2022-02-04
+                        span 헬로우
+                    div.chat_user
+                        div
+                            span 곤잘레스 쉬림프 파스타 
+                            span 14시 11분
+                            span 2022-02-04
+                        span 반가워요반가워요반가워요반가워요반가워요반가워요반가워요반가워요반가워요반가워요반가워요반가워요반가워요반가워요반가워요반가워요반가워요ㄴ
+                div.chat_text_length
+                    span 0
+                    span /
+                    span 100 자
+                div.chat_input
+                    textarea(maxLength=100)
+                    button(type="button") 보내기
+    script(src="/assets/js/socketLength.js")

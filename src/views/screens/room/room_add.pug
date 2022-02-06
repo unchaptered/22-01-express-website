@@ -1,0 +1,21 @@
+extends ../../BASE.pug
+
+block main
+    form(action="/rooms/add" method="POST")#form
+        div.form-sizer
+            div.form-display
+                header 채팅방 추가
+                label(for="username") 닉네임
+                input(type="text" id="username" name="username" required value=`${loggedInUser.username}` readonly disabled)
+                label(for="userId") 아이디
+                input(type="text" id="userId" name="userId" required minLength="7" maxLength="16" value=`${loggedInUser.userid}` readonly disabled)
+                label(for="roomtitle") 방 제목
+                input(type="text" id="roomtitle" name="roomtitle" required placeholder="채팅방 이름을 입력해주세요.")
+                label(for="roomtitle") 비밀 번호
+                input(type="password" id="roomtitle" name="roompw" placeholder="입력 시 비밀방이 생성됩니다.")
+                label(for="roomtitle") 인원수 제한
+                input(type="number" id="roomtitle" name="roommax" min=2 max=10 placeholder="최대 인원수 : 10, 기본값 : 5")
+
+                button(type="submit") 만들기
+                if messages.error
+                    span=messages.error

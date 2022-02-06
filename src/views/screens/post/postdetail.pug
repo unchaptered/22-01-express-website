@@ -6,9 +6,9 @@ block main
             div.form-display
                 div.post_div
                     label(for="username") 닉네임
-                    input(type="text" id="username" name="username" value=`${postDB.ownerId.username}` disabled)
+                    input(type="text" id="username" name="username" value=`${postDB.ownerId.username}` readonly disabled)
                     label(for="userId") 아이디
-                    input(type="text" id="userId" name="userId" value=`${postDB.ownerId.userid}` disabled)
+                    input(type="text" id="userId" name="userId" value=`${postDB.ownerId.userid}` readonly disabled)
                 if messages.postDB
                     div.post_div
                         label(for="posttitle") 게시글 제목

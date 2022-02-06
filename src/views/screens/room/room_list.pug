@@ -1,0 +1,26 @@
+extends ../../BASE.pug
+
+block main 
+    section#roomList
+        div.roomList-sizer
+            div.roomList-display
+                each roomDB in roomDBList
+                    div.roomList_content
+                        div.roomList_column
+                            span 제목
+                            span #{roomDB.roomtitle}
+                        div.roomList_column
+                            span 비밀 번호
+                            span #{roomDB.roompw}
+                        div.roomList_column
+                            span 인원수 제한
+                            span #{roomDB.roommax}
+                        div.roomList_column
+                            span 생성자
+                            span #{roomDB.username}
+                        div.roomList_column
+                            span 생성 일자
+                            span #{roomDB.createdDate}
+                        button(href=`/rooms/${roomDB.roomid}`) 방문하기
+    script(src="/socket.io/socket.io.js")
+    script(src="/assets/js/socket.js")

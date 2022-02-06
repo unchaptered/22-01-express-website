@@ -6,9 +6,9 @@ block main
             div.form-display
                 div.post_div
                     label(for="username") 닉네임
-                    input(type="text" id="username" name="username" value=`${loggedInUser.username}` disabled)
+                    input(type="text" id="username" name="username" value=`${loggedInUser.username}` readonly disabled)
                     label(for="userId") 아이디
-                    input(type="text" id="userId" name="userId" value=`${loggedInUser.userid}` disabled)
+                    input(type="text" id="userId" name="userId" value=`${loggedInUser.userid}` readonly disabled)
                 div.post_div
                     label(for="posttitle") 게시글 제목
                     input(type="text" id="posttitle" name="posttitle" required minLength=1)
