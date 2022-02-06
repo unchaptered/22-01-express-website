@@ -18,6 +18,7 @@ export const getPostLists=async(req, res)=>{
                 post.setOwnerId=ownerId;
                 return post;
             });
+
         logger.info(`⭕ getPostLists ${req.headers["x-forwarded-for"] || req.connection.remoteAddress}`);
         return res.status(200).render("screens/post/postlist.pug", {postDBLists});
     } catch(err) {
@@ -49,10 +50,12 @@ export const postAddPost=async(req, res)=> {
             createdDate:postObj.getCreatedDate,
             ownerId:postObj.getOwnerId
         });
+
         logger.info(`⭕ postAddPost ${req.headers["x-forwarded-for"] || req.connection.remoteAddress}`);
         req.flash("data", "게시글 작성이 완료되었습니다.");
         return res.status(200).redirect(`/posts/${postDB._id}`);
     } catch(error) {
+
         logger.error(`❌ postAddPost ${req.headers["x-forwarded-for"] || req.connection.remoteAddress} / ${err}`);
         req.flash("error", error);
         return res.status(400).redirect("/");
@@ -68,6 +71,7 @@ export const getSinglePost=async(req, res)=>{
         postDB.setPostId=postDBtmp._id;
         postDB.setOwnerId=postDBtmp.ownerId;
         postDB.setCreatedDate=postDBtmp.createdDate;
+        
         logger.info(`⭕ getSinglePost ${req.headers["x-forwarded-for"] || req.connection.remoteAddress}`);
         return res.status(200).render("screens/post/postdetail.pug", { postDB });
     } catch(err) {
