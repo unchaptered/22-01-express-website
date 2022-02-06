@@ -1,5 +1,6 @@
 @import "../_root.css";
 
+#roomList,
 #postList,
 #userList {
     width: 100%;
@@ -9,6 +10,7 @@
     align-items: center;
     justify-content: center;
 }
+.roomList-sizer,
 .postList-sizer,
 .userList-sizer {
     margin: 0 auto;
@@ -17,6 +19,7 @@
     border: 1px solid black;
     padding: 30px;
 }
+.roomList-display,
 .postList-display,
 .userList-display {
     gap: 50px 15px;
@@ -24,17 +27,20 @@
     grid-template-columns: repeat(3,1fr);
 }
 @media screen and (max-width: 1040px) {
+    .roomList-sizer,
     .postList-sizer,
     .userList-sizer {
         margin: 0 auto;
         width: calc(100vw - 60px);
     }
+    .roomList-display,
     .postList-display,
     .userList-display {
         grid-template-columns: repeat(2,1fr);
     }
 }
 @media screen and (max-width: 800px) {
+    .roomList-display,
     .postList-display,
     .userList-display {
         grid-template-columns: repeat(1,1fr);
@@ -74,4 +80,27 @@
 }
 .postList_content span:nth-child(odd) {
     grid-column: span 2;
+}
+
+/* Room */
+
+.roomList_content {
+    padding: 10px;
+
+    gap: 5px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+}
+.roomList_column > span:nth-child(1) {
+    width: 100px;
+    display: inline-block;
+}
+.roomList_column > span:nth-child(2) {
+    width: fit-content;
+}
+.roomList_content > a {
+    width: 100%;
+    display: inline-block;
+    text-align: center;
 }
